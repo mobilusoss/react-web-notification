@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>React-web-notification by georgeOsdDev</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>React-web-notification</h1>
+        <p>React component with HTML5 Web Notification API</p>
+
+        <p class="view"><a href="https://github.com/georgeOsdDev/react-web-notification">View the Project on GitHub <small>georgeOsdDev/react-web-notification</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/georgeOsdDev/react-web-notification/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/georgeOsdDev/react-web-notification/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/georgeOsdDev/react-web-notification">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="react-web-notification--" class="anchor" href="#react-web-notification--" aria-hidden="true"><span class="octicon octicon-link"></span></a>React-web-notification <a href="https://travis-ci.org/georgeOsdDev/react-web-notification"><img src="https://travis-ci.org/georgeOsdDev/react-web-notification.svg?branch=develop" alt="Build Status"></a> <a href="http://badge.fury.io/js/react-web-notification"><img src="https://badge.fury.io/js/react-web-notification.svg" alt="npm version"></a>
+</h1>
+
+<p>React component with <a href="https://developer.mozilla.org/en/docs/Web/API/notification">HTML5 Web Notification API</a>.</p>
+
+<h2>
+<a id="demo" class="anchor" href="#demo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Demo</h2>
+
+<p><a href="http://georgeosddev.github.io/react-web-notification/example/">View Demo</a></p>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<div class="highlight highlight-bash"><pre>npm install --save react-web-notification</pre></div>
+
+<h2>
+<a id="api" class="anchor" href="#api" aria-hidden="true"><span class="octicon octicon-link"></span></a>API</h2>
+
+<h3>
+<a id="notification" class="anchor" href="#notification" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>Notification</code>
+</h3>
+
+<p>React component which wrap web-notification.</p>
+
+<h4>
+<a id="props" class="anchor" href="#props" aria-hidden="true"><span class="octicon octicon-link"></span></a>Props</h4>
+
+<div class="highlight highlight-javascript"><pre>Notification.propTypes <span class="pl-k">=</span> {
+  ignore<span class="pl-k">:</span> React.PropTypes.bool,
+  notSupported<span class="pl-k">:</span> React.PropTypes.func,
+  onPermissionGranted<span class="pl-k">:</span> React.PropTypes.func,
+  onPermissionDenied<span class="pl-k">:</span> React.PropTypes.func,
+  onShow<span class="pl-k">:</span> React.PropTypes.func,
+  <span class="pl-c1">onClick</span><span class="pl-k">:</span> React.PropTypes.func,
+  <span class="pl-c1">onClose</span><span class="pl-k">:</span> React.PropTypes.func,
+  <span class="pl-c1">onError</span><span class="pl-k">:</span> React.PropTypes.func,
+  timeout<span class="pl-k">:</span> React.PropTypes.number,
+  title<span class="pl-k">:</span> React.PropTypes.string.isRequired,
+  options<span class="pl-k">:</span> React.PropTypes.<span class="pl-c1">object</span>
+};
+</pre></div>
+
+<ul>
+<li><p><code>ignore</code> : if true, nothing will be happen</p></li>
+<li><p><code>notSupported()</code> : Called when <a href="https://developer.mozilla.org/en/docs/Web/API/notification">HTML5 Web Notification API</a> is not supported.</p></li>
+<li><p><code>onPermissionGranted()</code> : Called when permission granted.</p></li>
+<li><p><code>onPermissionDenied()</code> : Called when permission denied. <code>Notification</code> will do nothing until permission granted again.</p></li>
+<li><p><code>onShow(e, tag)</code> : Called when Desktop notification is shown.</p></li>
+<li><p><code>onClick(e, tag)</code> : Called when Desktop notification is clicked.</p></li>
+<li><p><code>onClose(e, tag)</code> : Called when Desktop notification is closed.</p></li>
+<li><p><code>onError(e, tag)</code> : Called when Desktop notification happen error.</p></li>
+<li><p><code>timeout</code> : milli sec to close notification automatically.(Default 5000)</p></li>
+<li><p><code>title</code> : Notification title.</p></li>
+<li><p><code>options</code> : Notification options. set <code>body</code>, <code>tag</code>, <code>icon</code> here.
+See also (<a href="https://developer.mozilla.org/en-US/docs/Web/API/Notification/Notification">https://developer.mozilla.org/en-US/docs/Web/API/Notification/Notification</a>)</p></li>
+</ul>
+
+<h2>
+<a id="usage-example" class="anchor" href="#usage-example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage example</h2>
+
+<p>See  <a href="https://github.com/georgeOsdDev/react-web-notification/tree/develop/example">example</a></p>
+
+<div class="highlight highlight-bash"><pre>npm install
+npm run start:example</pre></div>
+
+<h2>
+<a id="tests" class="anchor" href="#tests" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tests</h2>
+
+<div class="highlight highlight-bash"><pre>npm <span class="pl-c1">test</span></pre></div>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/georgeOsdDev">georgeOsdDev</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
