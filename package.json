@@ -1,0 +1,64 @@
+{
+  "name": "react-web-notification",
+  "version": "0.1.0",
+  "description": "React component with HTML5 Web Notification API",
+  "main": "./components/Notification.js",
+  "scripts": {
+    "browser": "browser-sync start --files example/* --server example",
+    "watch:example": "watchify example/app.js -dv -o example/bundle.js",
+    "start:example": "npm run watch:example & npm run browser",
+    "test:local": "karma start",
+    "test": "./node_modules/.bin/karma start --browsers Firefox --single-run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/georgeosddev/react-web-notification"
+  },
+  "keywords": [
+    "react",
+    "react-component",
+    "url",
+    "abchor",
+    "link"
+  ],
+  "author": "Takeharu.Oshida",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/georgeosddev/react-web-notification/issues"
+  },
+  "homepage": "https://github.com/georgeosddev/react-web-notification",
+  "devDependencies": {
+    "babel-eslint": "^3.1.9",
+    "babelify": "^6.1.2",
+    "browser-sync": "^2.7.6",
+    "browserify": "^10.2.1",
+    "chai": "^2.3.0",
+    "eslint": "^0.21.2",
+    "eslint-plugin-react": "^2.3.0",
+    "karma": "^0.12.35",
+    "karma-browserify": "^4.2.1",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^0.1.12",
+    "karma-cli": "0.0.4",
+    "karma-firefox-launcher": "^0.1.6",
+    "karma-mocha": "^0.1.10",
+    "karma-safari-launcher": "^0.1.1",
+    "karma-spec-reporter": "0.0.19",
+    "mocha": "^2.2.5",
+    "sinon": "^1.14.1",
+    "watchify": "^3.2.1"
+  },
+  "dependencies": {
+    "react": "^0.13.3"
+  },
+  "browserify": {
+    "transform": [
+      [
+        "babelify",
+        {
+          "compact": false
+        }
+      ]
+    ]
+  }
+}
