@@ -51,6 +51,10 @@ class App extends React.Component {
 
   handleButtonClick() {
 
+    if(this.state.ignore) {
+      return;
+    }
+
     const now = Date.now();
 
     const title = 'React-Web-Notification' + now;
