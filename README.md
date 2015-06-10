@@ -1,6 +1,7 @@
 # React-web-notification [![Build Status](https://travis-ci.org/georgeOsdDev/react-web-notification.svg?branch=develop)](https://travis-ci.org/georgeOsdDev/react-web-notification) [![npm version](https://badge.fury.io/js/react-web-notification.svg)](http://badge.fury.io/js/react-web-notification)
 
 React component with [HTML5 Web Notification API](https://developer.mozilla.org/en/docs/Web/API/notification).
+This component show nothing in dom element, but trigger HTML5 Web Notification API with `render` method in the life cycle of React.js.
 
 ## Demo
 
