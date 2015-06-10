@@ -18,13 +18,13 @@ class Notification extends React.Component {
 
     let supported = false;
     let granted = false;
-    if (!('Notification' in window)) {
-      supported = false;
-    } else {
+    if (('Notification' in window) && window.Notification) {
       supported = true;
       if (window.Notification.permission === PERMISSION_GRANTED) {
         granted = true;
       }
+    } else {
+      supported = false;
     }
 
     this.state = {
@@ -66,20 +66,24 @@ class Notification extends React.Component {
         opt.tag = 'web-notification-' + seq();
       }
 
-      let n = new window.Notification(this.props.title, opt);
-      n.onshow = (e) => {
-        this.props.onShow(e, opt.tag);
-        setTimeout(() => {
-          this.close(opt.tag);
-        }, this.props.timeout);
-      };
-      n.onclick = (e) => {this.props.onClick(e, opt.tag); };
-      n.onclose = (e) => {this.props.onClose(e, opt.tag); };
-      n.onerror = (e) => {this.props.onError(e, opt.tag); };
-      this.notifications[opt.tag] = n;
+      if (!this.notifications[opt.tag]) {
+        let n = new window.Notification(this.props.title, opt);
+        n.onshow = (e) => {
+          this.props.onShow(e, opt.tag);
+          setTimeout(() => {
+            this.close(opt.tag);
+          }, this.props.timeout);
+        };
+        n.onclick = (e) => {this.props.onClick(e, opt.tag); };
+        n.onclose = (e) => {this.props.onClose(e, opt.tag); };
+        n.onerror = (e) => {this.props.onError(e, opt.tag); };
+
+        this.notifications[opt.tag] = n;
+      }
     }
 
-    // is this neccessary?
+    // return null cause
+    // Error: Invariant Violation: Notification.render(): A valid ReactComponent must be returned. You may have returned undefined, an array or some other invalid object.
     return (
       <input type='hidden' name='dummy-for-react-web-notification' style={{display: 'none'}} />
     );
@@ -89,6 +93,11 @@ class Notification extends React.Component {
     if (this.notifications[tag] && typeof this.notifications[tag].close === 'function') {
       this.notifications[tag].close();
     }
+  }
+
+  // for debug
+  _getNotificationInstance(tag) {
+    return this.notifications[tag];
   }
 }
 
