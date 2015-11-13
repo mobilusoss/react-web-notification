@@ -10,7 +10,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      ignore: true
+      ignore: true,
+      title: ''
     };
   }
 
@@ -84,7 +85,7 @@ class App extends React.Component {
       <div>
         <button onClick={this.handleButtonClick.bind(this)}>Notif!</button>
         <Notification
-          ignore={this.state.ignore && this.state.title}
+          ignore={this.state.ignore && this.state.title !== ''}
           notSupported={this.handleNotSupported.bind(this)}
           onPermissionGranted={this.handlePermissionGranted.bind(this)}
           onPermissionDenied={this.handlePermissionDenied.bind(this)}

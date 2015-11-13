@@ -22,6 +22,7 @@ describe('Test of Notification', () => {
     it('should have default properties', function () {
       component = TestUtils.renderIntoDocument(<Notification title='test'/>);
       expect(component.props.ignore).to.be.eql(false);
+      expect(component.props.disableActiveWindow).to.be.eql(false);
       expect(typeof component.props.notSupported).to.be.eql('function');
       expect(typeof component.props.onPermissionGranted).to.be.eql('function');
       expect(typeof component.props.onPermissionDenied).to.be.eql('function');

@@ -33,9 +33,30 @@ class Notification extends React.Component {
     };
     // Do not save Notification instance in state
     this.notifications = {};
+    this.windowFocus = true;
+    this.onWindowFocus = this._onWindowFocus.bind(this);
+    this.onWindowBlur = this._onWindowBlur.bind(this);
+  }
+
+  _onWindowFocus(){
+    this.windowFocus = true;
+  }
+
+  _onWindowBlur(){
+    this.windowFocus = false;
   }
 
   componentDidMount(){
+    if (this.props.disableActiveWindow) {
+      if (window.addEventListener){
+        window.addEventListener('focus', this.onWindowFocus);
+        window.addEventListener('blur', this.onWindowBlur);
+      } else if (window.attachEvent){
+        window.attachEvent('focus', this.onWindowFocus);
+        window.attachEvent('blur', this.onWindowBlur);
+      }
+    }
+
     if (!this.state.supported) {
       this.props.notSupported();
     } else {
@@ -58,8 +79,21 @@ class Notification extends React.Component {
     }
   }
 
+  componentWillUnmount(){
+    if (this.props.disableActiveWindow) {
+      if (window.removeEventListner){
+        window.removeEventListener('focus', this.onWindowFocus);
+        window.removeEventListener('blur', this.onWindowBlur);
+      } else if (window.detachEvent){
+        window.detachEvent('focus', this.onWindowFocus);
+        window.detachEvent('blur', this.onWindowBlur);
+      }
+    }
+  }
+
   render() {
-    if (!this.props.ignore && this.props.title && this.state.supported && this.state.granted) {
+    let doNotShowOnActiveWindow = this.props.disableActiveWindow && this.windowFocus;
+    if (!this.props.ignore && this.props.title && this.state.supported && this.state.granted && !doNotShowOnActiveWindow) {
 
       let opt = this.props.options;
       if (typeof opt.tag !== 'string') {
@@ -103,6 +137,7 @@ class Notification extends React.Component {
 
 Notification.propTypes = {
   ignore: React.PropTypes.bool,
+  disableActiveWindow: React.PropTypes.bool,
   notSupported: React.PropTypes.func,
   onPermissionGranted: React.PropTypes.func,
   onPermissionDenied: React.PropTypes.func,
@@ -117,6 +152,7 @@ Notification.propTypes = {
 
 Notification.defaultProps = {
   ignore: false,
+  disableActiveWindow: false,
   notSupported: () => {},
   onPermissionGranted: () => {},
   onPermissionDenied: () => {},
