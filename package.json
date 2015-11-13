@@ -10,7 +10,7 @@
     "test:local": "karma start",
     "test": "./node_modules/.bin/karma start --browsers Firefox --single-run",
     "clean": "rimraf dist",
-    "build": "clean & webpack"
+    "build": "npm run clean & webpack"
   },
   "repository": {
     "type": "git",
@@ -19,9 +19,8 @@
   "keywords": [
     "react",
     "react-component",
-    "url",
-    "abchor",
-    "link"
+    "notification",
+    "web noticifaction"
   ],
   "author": "Takeharu.Oshida",
   "license": "MIT",

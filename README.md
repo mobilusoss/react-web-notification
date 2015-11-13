@@ -24,6 +24,7 @@ React component which wrap web-notification.
 ```javascript
 Notification.propTypes = {
   ignore: React.PropTypes.bool,
+  disableActiveWindow: React.PropTypes.bool,
   notSupported: React.PropTypes.func,
   onPermissionGranted: React.PropTypes.func,
   onPermissionDenied: React.PropTypes.func,
@@ -39,6 +40,8 @@ Notification.propTypes = {
 ```
 
 * `ignore` : if true, nothing will be happen
+
+* `disableActiveWindow` : if true, nothing will be happen when window is active
 
 * `notSupported()` : Called when [HTML5 Web Notification API](https://developer.mozilla.org/en/docs/Web/API/notification) is not supported.
 
