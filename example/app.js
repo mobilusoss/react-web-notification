@@ -1,7 +1,8 @@
 'use strict';
 
-import React from 'react/addons';
-import Notification  from '../components/Notification';
+import React from 'react';
+import ReactDom from 'react-dom';
+import Notification  from '../src/components/Notification';
 
 //allow react dev tools work
 window.React = React;
@@ -102,4 +103,4 @@ class App extends React.Component {
   }
 };
 
-React.render(<App/>, document.getElementById('out'));
+ReactDom.render(<App/>, document.getElementById('out'));
