@@ -1,12 +1,15 @@
 'use strict';
-import React from 'react/addons';
+
+import React from 'react';
+import ReactDom from 'react-dom';
+import TestUtils from 'react-addons-test-utils';
+
 import chai from 'chai';
 import sinon from 'sinon';
 let expect = chai.expect;
 import events from 'events'
 let EventEmitter = events.EventEmitter;
-import Notification from '../../components/Notification';
-const {TestUtils} = React.addons;
+import Notification from '../../src/components/Notification';
 
 const PERMISSION_GRANTED = 'granted';
 const PERMISSION_DENIED = 'denied';
@@ -38,7 +41,7 @@ describe('Test of Notification', () => {
       component = TestUtils.renderIntoDocument(<Notification title='test'/>);
       const el = TestUtils.scryRenderedDOMComponentsWithTag(component, 'input');
       expect(el.length).to.be.eql(1);
-      expect(React.findDOMNode(el[0]).type).to.be.eql('hidden');
+      expect(ReactDom.findDOMNode(el[0]).type).to.be.eql('hidden');
     });
   });
 
