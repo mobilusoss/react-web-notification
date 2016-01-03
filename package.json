@@ -1,8 +1,8 @@
 {
   "name": "react-web-notification",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "React component with HTML5 Web Notification API",
-  "main": "./lib/components/ReactWebNotification.js",
+  "main": "./lib/components/Notification.js",
   "scripts": {
     "browser": "browser-sync start --files example/* --server example",
     "watch:example": "watchify example/app.js -dv -o example/bundle.js",
