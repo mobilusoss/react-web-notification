@@ -1,7 +1,8 @@
 'use strict';
 
-import React from 'react/addons';
-import Notification  from '../components/Notification';
+import React from 'react';
+import ReactDom from 'react-dom';
+import Notification  from '../src/components/Notification';
 
 //allow react dev tools work
 window.React = React;
@@ -10,7 +11,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      ignore: true
+      ignore: true,
+      title: ''
     };
   }
 
@@ -46,7 +48,12 @@ class App extends React.Component {
   }
 
   handleNotificationOnShow(e, tag){
+    this.playSound();
     console.log(e, 'Notification shown tag:' + tag);
+  }
+
+  playSound(filename){
+    document.getElementById('sound').play();
   }
 
   handleButtonClick() {
@@ -70,7 +77,8 @@ class App extends React.Component {
       body: body,
       icon: icon,
       lang: 'en',
-      dir: 'ltr'
+      dir: 'ltr',
+      sound: './sound.mp3'  // no browsers supported https://developer.mozilla.org/en/docs/Web/API/notification/sound#Browser_compatibility
     }
     this.setState({
       title: title,
@@ -84,7 +92,7 @@ class App extends React.Component {
       <div>
         <button onClick={this.handleButtonClick.bind(this)}>Notif!</button>
         <Notification
-          ignore={this.state.ignore && this.state.title}
+          ignore={this.state.ignore && this.state.title !== ''}
           notSupported={this.handleNotSupported.bind(this)}
           onPermissionGranted={this.handlePermissionGranted.bind(this)}
           onPermissionDenied={this.handlePermissionDenied.bind(this)}
@@ -96,9 +104,14 @@ class App extends React.Component {
           title={this.state.title}
           options={this.state.options}
         />
+        <audio id='sound' preload='auto'>
+          <source src='./sound.mp3' type='audio/mpeg' />
+          <source src='./sound.ogg' type='audio/ogg' />
+          <embed hidden='true' autostart='false' loop='false' src='./sound.mp3' />
+        </audio>
       </div>
     )
   }
 };
 
-React.render(<App/>, document.getElementById('out'));
+ReactDom.render(<App/>, document.getElementById('out'));
