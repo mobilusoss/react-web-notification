@@ -48,7 +48,12 @@ class App extends React.Component {
   }
 
   handleNotificationOnShow(e, tag){
+    this.playSound();
     console.log(e, 'Notification shown tag:' + tag);
+  }
+
+  playSound(filename){
+    document.getElementById('sound').play();
   }
 
   handleButtonClick() {
@@ -72,7 +77,8 @@ class App extends React.Component {
       body: body,
       icon: icon,
       lang: 'en',
-      dir: 'ltr'
+      dir: 'ltr',
+      sound: './sound.mp3'  // no browsers supported https://developer.mozilla.org/en/docs/Web/API/notification/sound#Browser_compatibility
     }
     this.setState({
       title: title,
@@ -98,6 +104,11 @@ class App extends React.Component {
           title={this.state.title}
           options={this.state.options}
         />
+        <audio id='sound' preload='auto'>
+          <source src='./sound.mp3' type='audio/mpeg' />
+          <source src='./sound.ogg' type='audio/ogg' />
+          <embed hidden='true' autostart='false' loop='false' src='./sound.mp3' />
+        </audio>
       </div>
     )
   }
