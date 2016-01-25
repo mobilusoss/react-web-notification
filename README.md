@@ -79,3 +79,11 @@ npm run start:example
 ```bash
 npm test
 ```
+
+
+### Known Issues
+
+ * [Notification.sound](https://github.com/georgeOsdDev/react-web-notification/issues/13)
+  `Notification.sound` is [not supported in any browser](https://developer.mozilla.org/en/docs/Web/API/notification/sound#Browser_compatibility).
+  You can emulate it with `onShow` callback. see [example](https://github.com/georgeOsdDev/react-web-notification/tree/develop/example).
+
