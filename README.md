@@ -43,6 +43,8 @@ Notification.propTypes = {
 
 * `disableActiveWindow` : if true, nothing will be happen when window is active
 
+* `askAgain` : if true, `window.Notification.requestPermission` will be called on `componentDidMount`, even if it was denied before,
+
 * `notSupported()` : Called when [HTML5 Web Notification API](https://developer.mozilla.org/en/docs/Web/API/notification) is not supported.
 
 * `onPermissionGranted()` : Called when permission granted.

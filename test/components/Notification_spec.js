@@ -13,6 +13,7 @@ import Notification from '../../src/components/Notification';
 
 const PERMISSION_GRANTED = 'granted';
 const PERMISSION_DENIED = 'denied';
+const PERMISSION_DEFAULT = 'default';
 
 describe('Test of Notification', () => {
 
@@ -26,6 +27,7 @@ describe('Test of Notification', () => {
       component = TestUtils.renderIntoDocument(<Notification title='test'/>);
       expect(component.props.ignore).to.be.eql(false);
       expect(component.props.disableActiveWindow).to.be.eql(false);
+      expect(component.props.askAgain).to.be.eql(false);
       expect(typeof component.props.notSupported).to.be.eql('function');
       expect(typeof component.props.onPermissionGranted).to.be.eql('function');
       expect(typeof component.props.onPermissionDenied).to.be.eql('function');
@@ -94,6 +96,68 @@ describe('Test of Notification', () => {
             it('should call onPermissionDenied prop', () => {
               expect(spy1.called).to.be.eql(false);
               expect(spy2.calledOnce).to.be.eql(true);
+            });
+          });
+        });
+
+        describe('When Notification is already denied', () => {
+          describe('Check callbacks', ()=> {
+
+            let stub1, stub2, spy1, spy2;
+            before(() => {
+              spy1 = sinon.spy();
+              spy2 = sinon.spy();
+              stub1 = sinon.stub(window.Notification, 'permission', { get: function () { return PERMISSION_DENIED; } });
+              stub2 = sinon.stub(window.Notification, 'requestPermission', function(cb){
+                return cb(PERMISSION_DENIED);
+              });
+              component = TestUtils.renderIntoDocument(<Notification title='test' notSupported={spy1} onPermissionDenied={spy2}/>);
+            });
+
+            after(() => {
+              stub1.restore();
+              stub2.restore();
+            });
+
+            it('should not call window.Notification.requestPermission', () => {
+              expect(stub2.calledOnce).to.be.eql(false);
+            });
+
+            it('should call onPermissionDenied prop', () => {
+              expect(spy1.called).to.be.eql(false);
+              expect(spy2.calledOnce).to.be.eql(true);
+            });
+          });
+        });
+
+        describe('When Notification is already denied, but `askAgain` prop is true', () => {
+          describe('Check callbacks', ()=> {
+
+            let stub1, stub2, spy1, spy2, spy3;
+            before(() => {
+              spy1 = sinon.spy();
+              spy2 = sinon.spy();
+              spy3 = sinon.spy();
+              stub1 = sinon.stub(window.Notification, 'permission', { get: function () { return PERMISSION_DENIED; } });
+              stub2 = sinon.stub(window.Notification, 'requestPermission', function(cb){
+                return cb(PERMISSION_GRANTED);
+              });
+              component = TestUtils.renderIntoDocument(<Notification title='test' notSupported={spy1} onPermissionDenied={spy2} onPermissionGranted={spy3} askAgain={true}/>);
+            });
+
+            after(() => {
+              stub1.restore();
+              stub2.restore();
+            });
+
+            it('should call window.Notification.requestPermission', () => {
+              expect(stub2.calledOnce).to.be.eql(true);
+            });
+
+            it('should call onPermissionGranted prop', () => {
+              expect(spy1.called).to.be.eql(false);
+              expect(spy2.called).to.be.eql(false);
+              expect(spy3.calledOnce).to.be.eql(true);
             });
           });
         });

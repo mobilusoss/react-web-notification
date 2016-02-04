@@ -2,7 +2,7 @@
 
 import React from 'react';
 import ReactDom from 'react-dom';
-import Notification  from '../src/components/Notification';
+import Notification  from '../lib/components/Notification';
 
 //allow react dev tools work
 window.React = React;
