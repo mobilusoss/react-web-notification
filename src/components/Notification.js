@@ -3,6 +3,7 @@
 import React from 'react';
 
 const PERMISSION_GRANTED = 'granted';
+const PERMISSION_DENIED = 'denied';
 
 const seqGen = () => {
   let i = 0;
@@ -46,6 +47,21 @@ class Notification extends React.Component {
     this.windowFocus = false;
   }
 
+  _askPermission(){
+    window.Notification.requestPermission((permission) => {
+      let result = permission === PERMISSION_GRANTED;
+      this.setState({
+        granted: result
+      }, () => {
+        if (result) {
+          this.props.onPermissionGranted();
+        } else {
+          this.props.onPermissionDenied();
+        }
+      });
+    });
+  }
+
   componentDidMount(){
     if (this.props.disableActiveWindow) {
       if (window.addEventListener){
@@ -59,22 +75,17 @@ class Notification extends React.Component {
 
     if (!this.state.supported) {
       this.props.notSupported();
-    } else {
-      if(this.state.granted) {
+    } else if (this.state.granted) {
       this.props.onPermissionGranted();
+    } else {
+      if (window.Notification.permission === PERMISSION_DENIED){
+        if (this.props.askAgain){
+          this._askPermission();
+        } else {
+          this.props.onPermissionDenied();
+        }
       } else {
-        window.Notification.requestPermission( (permission) => {
-          let result = permission === PERMISSION_GRANTED;
-          this.setState({
-            granted: result
-          }, () => {
-            if (result) {
-              this.props.onPermissionGranted();
-            } else {
-              this.props.onPermissionDenied();
-            }
-          });
-        });
+        this._askPermission();
       }
     }
   }
@@ -90,6 +101,8 @@ class Notification extends React.Component {
       }
     }
   }
+
+
 
   render() {
     let doNotShowOnActiveWindow = this.props.disableActiveWindow && this.windowFocus;
@@ -138,6 +151,7 @@ class Notification extends React.Component {
 Notification.propTypes = {
   ignore: React.PropTypes.bool,
   disableActiveWindow: React.PropTypes.bool,
+  askAgain: React.PropTypes.bool,
   notSupported: React.PropTypes.func,
   onPermissionGranted: React.PropTypes.func,
   onPermissionDenied: React.PropTypes.func,
@@ -153,6 +167,7 @@ Notification.propTypes = {
 Notification.defaultProps = {
   ignore: false,
   disableActiveWindow: false,
+  askAgain: false,
   notSupported: () => {},
   onPermissionGranted: () => {},
   onPermissionDenied: () => {},
