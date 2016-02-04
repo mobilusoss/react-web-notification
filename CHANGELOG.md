@@ -1,6 +1,10 @@
 ## Change Log
 
-### Ver 0.2.2 (Next Release)
+### Ver 0.2.3 (Next Release)
+
+### Ver 0.2.2
+
+  * [#15 Permission being repeatedly asked for in Safari](https://github.com/georgeOsdDev/react-web-notification/issues/11)
 
 ### Ver 0.2.1
 
