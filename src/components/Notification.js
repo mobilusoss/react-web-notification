@@ -24,8 +24,6 @@ class Notification extends React.Component {
       if (window.Notification.permission === PERMISSION_GRANTED) {
         granted = true;
       }
-    } else {
-      supported = false;
     }
 
     this.state = {
