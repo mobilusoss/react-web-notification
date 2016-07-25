@@ -116,7 +116,7 @@ class Notification extends React.Component {
         n.onshow = (e) => {
           this.props.onShow(e, opt.tag);
           setTimeout(() => {
-            this.close(opt.tag);
+            this.close(n);
           }, this.props.timeout);
         };
         n.onclick = (e) => {this.props.onClick(e, opt.tag); };
@@ -134,9 +134,9 @@ class Notification extends React.Component {
     );
   }
 
-  close(tag) {
-    if (this.notifications[tag] && typeof this.notifications[tag].close === 'function') {
-      this.notifications[tag].close();
+  close(n) {
+    if (n && typeof n.close === 'function') {
+      n.close();
     }
   }
 
