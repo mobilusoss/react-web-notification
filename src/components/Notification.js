@@ -17,19 +17,6 @@ class Notification extends React.Component {
   constructor(props) {
     super(props);
 
-    let supported = false;
-    let granted = false;
-    if (('Notification' in window) && window.Notification) {
-      supported = true;
-      if (window.Notification.permission === PERMISSION_GRANTED) {
-        granted = true;
-      }
-    }
-
-    this.state = {
-      supported: supported,
-      granted: granted
-    };
     // Do not save Notification instance in state
     this.notifications = {};
     this.windowFocus = true;
@@ -61,6 +48,15 @@ class Notification extends React.Component {
   }
 
   componentDidMount(){
+    let supported = false;
+    let granted = false;
+    if (('Notification' in window) && window.Notification) {
+      supported = true;
+      if (window.Notification.permission === PERMISSION_GRANTED) {
+        granted = true;
+      }
+    }
+
     if (this.props.disableActiveWindow) {
       if (window.addEventListener){
         window.addEventListener('focus', this.onWindowFocus);
@@ -71,21 +67,27 @@ class Notification extends React.Component {
       }
     }
 
-    if (!this.state.supported) {
-      this.props.notSupported();
-    } else if (this.state.granted) {
-      this.props.onPermissionGranted();
-    } else {
-      if (window.Notification.permission === PERMISSION_DENIED){
-        if (this.props.askAgain){
-          this._askPermission();
-        } else {
-          this.props.onPermissionDenied();
-        }
+    this.setState({
+      granted,
+      supported,
+    }, () => {
+      if (!this.state.supported) {
+        this.props.notSupported();
+      } else if (this.state.granted) {
+        this.props.onPermissionGranted();
       } else {
-        this._askPermission();
+        if (window.Notification.permission === PERMISSION_DENIED){
+          if (this.props.askAgain){
+            this._askPermission();
+          } else {
+            this.props.onPermissionDenied();
+          }
+        } else {
+          this._askPermission();
+        }
       }
-    }
+    });
+
   }
 
   componentWillUnmount(){
