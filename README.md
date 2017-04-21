@@ -23,18 +23,18 @@ React component which wrap web-notification.
 
 ```javascript
 Notification.propTypes = {
-  ignore: React.PropTypes.bool,
-  disableActiveWindow: React.PropTypes.bool,
-  notSupported: React.PropTypes.func,
-  onPermissionGranted: React.PropTypes.func,
-  onPermissionDenied: React.PropTypes.func,
-  onShow: React.PropTypes.func,
-  onClick: React.PropTypes.func,
-  onClose: React.PropTypes.func,
-  onError: React.PropTypes.func,
-  timeout: React.PropTypes.number,
-  title: React.PropTypes.string.isRequired,
-  options: React.PropTypes.object
+  ignore: bool,
+  disableActiveWindow: bool,
+  notSupported: func,
+  onPermissionGranted: func,
+  onPermissionDenied: func,
+  onShow: func,
+  onClick: func,
+  onClose: func,
+  onError: func,
+  timeout: number,
+  title: string.isRequired,
+  options: object
 };
 
 ```
