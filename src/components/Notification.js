@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+import { bool, func, number, object, string } from 'prop-types';
 
 const PERMISSION_GRANTED = 'granted';
 const PERMISSION_DENIED = 'denied';
@@ -147,19 +148,19 @@ class Notification extends React.Component {
 }
 
 Notification.propTypes = {
-  ignore: React.PropTypes.bool,
-  disableActiveWindow: React.PropTypes.bool,
-  askAgain: React.PropTypes.bool,
-  notSupported: React.PropTypes.func,
-  onPermissionGranted: React.PropTypes.func,
-  onPermissionDenied: React.PropTypes.func,
-  onShow: React.PropTypes.func,
-  onClick: React.PropTypes.func,
-  onClose: React.PropTypes.func,
-  onError: React.PropTypes.func,
-  timeout: React.PropTypes.number,
-  title: React.PropTypes.string.isRequired,
-  options: React.PropTypes.object
+  ignore: bool,
+  disableActiveWindow: bool,
+  askAgain: bool,
+  notSupported: func,
+  onPermissionGranted: func,
+  onPermissionDenied: func,
+  onShow: func,
+  onClick: func,
+  onClose: func,
+  onError: func,
+  timeout: number,
+  title: string.isRequired,
+  options: object
 };
 
 Notification.defaultProps = {
