@@ -2,6 +2,10 @@
 
 ### Ver 0.3.0 (Next Release)
 
+### Ver 0.2.4
+
+* [#28 Use prop-types package instead of accessing PropTypes](https://github.com/georgeOsdDev/react-web-notification/issues/28), thanks @AlexNisnevich
+
 ### Ver 0.2.3
 
 * [#19 add support for react@^15](https://github.com/georgeOsdDev/react-web-notification/issues/19), thanks @emirotin
