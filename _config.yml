@@ -1,0 +1,8 @@
+title: React-web-notification
+description: React component with HTML5 Web Notification API
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-minimal
+
+gems:
+  - jekyll-mentions
