@@ -40,8 +40,8 @@ module.exports = function(config) {
           {
             'compact': false,
             'presets': [
-              'react',
-              'es2015'
+              'env',
+              'react'
             ]
           }
         ]

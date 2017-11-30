@@ -2,6 +2,8 @@
 
 ### Ver 0.3.0 (Next Release)
 
+* [Update React and dependencies](https://github.com/georgeOsdDev/react-web-notification/issues/31)
+
 ### Ver 0.2.4
 
 * [#28 Use prop-types package instead of accessing PropTypes](https://github.com/georgeOsdDev/react-web-notification/issues/28), thanks @AlexNisnevich
