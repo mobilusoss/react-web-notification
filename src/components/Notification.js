@@ -1,5 +1,3 @@
-'use strict';
-
 import React from 'react';
 import { bool, func, number, object, string } from 'prop-types';
 

@@ -1,8 +1,6 @@
-'use strict';
-
 import React from 'react';
 import ReactDom from 'react-dom';
-import TestUtils from 'react-addons-test-utils';
+import ReactTestUtils from 'react-dom/test-utils';
 
 import chai from 'chai';
 import sinon from 'sinon';
@@ -24,7 +22,7 @@ describe('Test of Notification', () => {
 
   describe('Notification component', () => {
     it('should have default properties', function () {
-      component = TestUtils.renderIntoDocument(<Notification title='test'/>);
+      component = ReactTestUtils.renderIntoDocument(<Notification title='test'/>);
       expect(component.props.ignore).to.be.eql(false);
       expect(component.props.disableActiveWindow).to.be.eql(false);
       expect(component.props.askAgain).to.be.eql(false);
@@ -40,8 +38,8 @@ describe('Test of Notification', () => {
     });
 
     it('should render dummy hidden tag', function () {
-      component = TestUtils.renderIntoDocument(<Notification title='test'/>);
-      const el = TestUtils.scryRenderedDOMComponentsWithTag(component, 'input');
+      component = ReactTestUtils.renderIntoDocument(<Notification title='test'/>);
+      const el = ReactTestUtils.scryRenderedDOMComponentsWithTag(component, 'input');
       expect(el.length).to.be.eql(1);
       expect(ReactDom.findDOMNode(el[0]).type).to.be.eql('hidden');
     });
@@ -64,7 +62,7 @@ describe('Test of Notification', () => {
 
       it('should call notSupported prop', () => {
         let spy = sinon.spy();
-        component = TestUtils.renderIntoDocument(<Notification title='test' notSupported={spy}/>);
+        component = ReactTestUtils.renderIntoDocument(<Notification title='test' notSupported={spy}/>);
         expect(spy.calledOnce).to.be.eql(true);
         expect(stub.called).to.be.eql(false);
       });
@@ -79,10 +77,10 @@ describe('Test of Notification', () => {
             before(() => {
               spy1 = sinon.spy();
               spy2 = sinon.spy();
-              stub = sinon.stub(window.Notification, 'requestPermission', function(cb){
+              stub = sinon.stub(window.Notification, 'requestPermission').callsFake(function(cb){
                 return cb(PERMISSION_DENIED);
               });
-              component = TestUtils.renderIntoDocument(<Notification title='test' notSupported={spy1} onPermissionDenied={spy2}/>);
+              component = ReactTestUtils.renderIntoDocument(<Notification title='test' notSupported={spy1} onPermissionDenied={spy2}/>);
             });
 
             after(() => {
@@ -107,11 +105,13 @@ describe('Test of Notification', () => {
             before(() => {
               spy1 = sinon.spy();
               spy2 = sinon.spy();
-              stub1 = sinon.stub(window.Notification, 'permission', { get: function () { return PERMISSION_DENIED; } });
-              stub2 = sinon.stub(window.Notification, 'requestPermission', function(cb){
+              stub1 = sinon.stub(window.Notification, 'permission').get(function getterFn() {
+                return PERMISSION_DENIED;
+              });
+              stub2 = sinon.stub(window.Notification, 'requestPermission').callsFake(function(cb){
                 return cb(PERMISSION_DENIED);
               });
-              component = TestUtils.renderIntoDocument(<Notification title='test' notSupported={spy1} onPermissionDenied={spy2}/>);
+              component = ReactTestUtils.renderIntoDocument(<Notification title='test' notSupported={spy1} onPermissionDenied={spy2}/>);
             });
 
             after(() => {
@@ -138,11 +138,13 @@ describe('Test of Notification', () => {
               spy1 = sinon.spy();
               spy2 = sinon.spy();
               spy3 = sinon.spy();
-              stub1 = sinon.stub(window.Notification, 'permission', { get: function () { return PERMISSION_DENIED; } });
-              stub2 = sinon.stub(window.Notification, 'requestPermission', function(cb){
+              stub1 = sinon.stub(window.Notification, 'permission').get(function getterFn() {
+                return PERMISSION_DENIED;
+              });
+              stub2 = sinon.stub(window.Notification, 'requestPermission').callsFake(function(cb){
                 return cb(PERMISSION_GRANTED);
               });
-              component = TestUtils.renderIntoDocument(<Notification title='test' notSupported={spy1} onPermissionDenied={spy2} onPermissionGranted={spy3} askAgain={true}/>);
+              component = ReactTestUtils.renderIntoDocument(<Notification title='test' notSupported={spy1} onPermissionDenied={spy2} onPermissionGranted={spy3} askAgain={true}/>);
             });
 
             after(() => {
@@ -165,7 +167,7 @@ describe('Test of Notification', () => {
         describe('When Notification is granted', () => {
           let stub;
           before(() => {
-            stub = sinon.stub(window.Notification, 'requestPermission', function(cb){
+            stub = sinon.stub(window.Notification, 'requestPermission').callsFake(function(cb){
               return cb(PERMISSION_GRANTED);
             });
           });
@@ -180,7 +182,7 @@ describe('Test of Notification', () => {
               spy1 = sinon.spy();
               spy2 = sinon.spy();
               spy3 = sinon.spy();
-              component = TestUtils.renderIntoDocument(<Notification title='test' notSupported={spy1} onPermissionDenied={spy2} onPermissionGranted={spy3}/>);
+              component = ReactTestUtils.renderIntoDocument(<Notification title='test' notSupported={spy1} onPermissionDenied={spy2} onPermissionGranted={spy3}/>);
             });
 
             it('should call window.Notification.requestPermission', () => {
@@ -218,7 +220,7 @@ describe('Test of Notification', () => {
               onErrorSpy = sinon.spy();
 
               it('does not trigger Notification', () => {
-                component = TestUtils.renderIntoDocument(<Notification title='test' ignore={true} onShow={onShowSpy} onClick={onClickSpy} onClose={onCloseSpy} onError={onErrorSpy} />);
+                component = ReactTestUtils.renderIntoDocument(<Notification title='test' ignore={true} onShow={onShowSpy} onClick={onClickSpy} onClose={onCloseSpy} onError={onErrorSpy} />);
                 expect(stubConstructor.calledWithNew()).to.be.eql(false);
                 expect(onShowSpy.called).to.be.eql(false);
                 expect(onClickSpy.called).to.be.eql(false);
@@ -242,7 +244,7 @@ describe('Test of Notification', () => {
               onErrorSpy = sinon.spy();
 
               it('trigger Notification with specified title and options', () => {
-                component = TestUtils.renderIntoDocument(<Notification title={MY_TITLE} options={MY_OPTIONS} ignore={false} onShow={onShowSpy} onClick={onClickSpy} onClose={onCloseSpy} onError={onErrorSpy} />);
+                component = ReactTestUtils.renderIntoDocument(<Notification title={MY_TITLE} options={MY_OPTIONS} ignore={false} onShow={onShowSpy} onClick={onClickSpy} onClose={onCloseSpy} onError={onErrorSpy} />);
                 expect(stubConstructor.calledWithNew()).to.be.eql(true);
                 expect(stubConstructor.calledWith(MY_TITLE, MY_OPTIONS)).to.be.eql(true);
               });
