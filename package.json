@@ -1,6 +1,6 @@
 {
   "name": "react-web-notification",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "React component with HTML5 Web Notification API",
   "main": "./lib/components/Notification.js",
   "scripts": {
@@ -32,6 +32,7 @@
     "babel-cli": "^6.3.17",
     "babel-core": "^6.3.21",
     "babel-eslint": "^8.0.2",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.3.13",
     "babelify": "^8.0.0",
     "browser-sync": "^2.10.1",
@@ -50,18 +51,15 @@
     "karma-spec-reporter": "0.0.31",
     "mocha": "^4.0.1",
     "prop-types": "^15.5.8",
+    "react": "^0.14.3 || ^15.0.1 || ^16.2.0",
     "react-addons-test-utils": "^0.14.3 || ^15.0.1",
-    "react-dom": "^16.2.0",
+    "react-dom": "^0.14.3 || ^15.0.1 || ^16.2.0",
     "rimraf": "^2.4.4",
     "sinon": "^4.1.2",
     "watchify": "^3.6.1"
   },
-  "dependencies": {
-    "babel-preset-env": "^1.6.1",
-    "react": "^16.2.0"
-  },
   "peerDependencies": {
-    "react": "^16.2.0"
+    "react": "^0.14.3 || ^15.0.1 || ^16.2.0"
   },
   "browserify": {
     "transform": [
