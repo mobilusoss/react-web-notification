@@ -5,7 +5,7 @@ This component show nothing in dom element, but trigger HTML5 Web Notification A
 
 ## Demo
 
-[View Demo](http://georgeosddev.github.io/react-web-notification/example/)
+[View Demo](https://georgeosddev.github.io/react-web-notification/example/)
 
 ## Installation
 
