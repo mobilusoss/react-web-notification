@@ -1,6 +1,14 @@
 ## Change Log
 
-### Ver 0.3.0 (Next Release)
+### Ver 0.3.2
+
+* [Typo issue](https://github.com/georgeOsdDev/react-web-notification/issues/39)
+
+### Ver 0.3.1
+
+* [Change demo link to https](https://github.com/georgeOsdDev/react-web-notification/issues/33)
+
+### Ver 0.3.0
 
 * [Update React and dependencies](https://github.com/georgeOsdDev/react-web-notification/issues/31)
 
