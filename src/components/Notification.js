@@ -61,13 +61,8 @@ class Notification extends React.Component {
 
   componentDidMount(){
     if (this.props.disableActiveWindow) {
-      if (window.addEventListener){
-        window.addEventListener('focus', this.onWindowFocus);
-        window.addEventListener('blur', this.onWindowBlur);
-      } else if (window.attachEvent){
-        window.attachEvent('focus', this.onWindowFocus);
-        window.attachEvent('blur', this.onWindowBlur);
-      }
+      window.addEventListener('focus', this.onWindowFocus);
+      window.addEventListener('blur', this.onWindowBlur);
     }
 
     if (!this.state.supported) {
@@ -89,13 +84,8 @@ class Notification extends React.Component {
 
   componentWillUnmount(){
     if (this.props.disableActiveWindow) {
-      if (window.removeEventListner){
-        window.removeEventListener('focus', this.onWindowFocus);
-        window.removeEventListener('blur', this.onWindowBlur);
-      } else if (window.detachEvent){
-        window.detachEvent('focus', this.onWindowFocus);
-        window.detachEvent('blur', this.onWindowBlur);
-      }
+      window.removeEventListener('focus', this.onWindowFocus);
+      window.removeEventListener('blur', this.onWindowBlur);
     }
   }
 
