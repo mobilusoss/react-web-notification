@@ -25,6 +25,7 @@ React component which wrap web-notification.
 Notification.propTypes = {
   ignore: bool,
   disableActiveWindow: bool,
+  askAgain: bool,
   notSupported: func,
   onPermissionGranted: func,
   onPermissionDenied: func,
