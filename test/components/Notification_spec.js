@@ -288,6 +288,25 @@ describe('Test of Notification', () => {
                 expect(args[1]).to.be.eql('mytag');
               });
             });
+
+            describe('when swRegistration prop is defined', () => {
+              const swRegistrationMock = { showNotification: sinon.stub().resolves({ notification: ee }) }
+              const MY_TITLE = 'mytitle';
+              const MY_OPTIONS = {
+                tag: 'mytag',
+                body: 'mybody',
+                icon: 'myicon',
+                lang: 'en',
+                dir: 'ltr',
+                requireInteraction: true,
+              };
+
+              it('does not trigger Notification but trigger swRegistration.showNotification', () => {
+                component = ReactTestUtils.renderIntoDocument(<Notification title={MY_TITLE} options={MY_OPTIONS} swRegistration={swRegistrationMock} />);
+                expect(stubConstructor.calledWithNew()).to.be.eql(false);
+                expect(swRegistrationMock.showNotification.calledWith(MY_TITLE, MY_OPTIONS)).to.be.eql(true);
+              });
+            });
           });
         });
       });

@@ -34,7 +34,8 @@ Notification.propTypes = {
   onError: func,
   timeout: number,
   title: string.isRequired,
-  options: object
+  options: object,
+  swRegistration: object,
 };
 
 ```
@@ -65,6 +66,10 @@ Notification.propTypes = {
 
 * `options` : Notification options. set `body`, `tag`, `icon` here.
   See also (https://developer.mozilla.org/en-US/docs/Web/API/Notification/Notification)
+
+* `swRegistration` : ServiceWorkerRegistration. Use this prop to delegate the notification creation to a service worker.
+  See also (https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration/showNotification)
+  ⚠️ `onShow`, `onClick`, `onClose` and `onError` handlers won't work when notification is created by the service worker.
 
 
 ## Usage example
