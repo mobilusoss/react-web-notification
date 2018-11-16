@@ -1,5 +1,11 @@
 ## Change Log
 
+### Ver 0.4.0
+
+* [add service worker registration prop](https://github.com/georgeOsdDev/react-web-notification/pull/41)
+
+* [Add askAgain to propTypes in Readme](https://github.com/georgeOsdDev/react-web-notification/pull/42)
+
 ### Ver 0.3.2
 
 * [Typo issue](https://github.com/georgeOsdDev/react-web-notification/issues/39)

@@ -1,6 +1,6 @@
 {
   "name": "react-web-notification",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "description": "React component with HTML5 Web Notification API",
   "main": "./lib/components/Notification.js",
   "scripts": {
