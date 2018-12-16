@@ -1,5 +1,10 @@
 ## Change Log
 
+### Ver 0.5.0
+
+* Update `Babel` from 6.x to 7.x 
+* Update other dependencies
+
 ### Ver 0.4.0
 
 * [add service worker registration prop](https://github.com/georgeOsdDev/react-web-notification/pull/41)
