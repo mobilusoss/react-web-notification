@@ -40,8 +40,8 @@ module.exports = function(config) {
           {
             'compact': false,
             'presets': [
-              'env',
-              'react'
+              "@babel/preset-env",
+              "@babel/preset-react"
             ]
           }
         ]
