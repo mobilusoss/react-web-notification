@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/georgeosddev/react-web-notification"
+    "url": "git://github.com/mobilusoss/react-web-notification"
   },
   "keywords": [
     "react",
@@ -25,9 +25,9 @@
   "author": "Takeharu.Oshida",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/georgeosddev/react-web-notification/issues"
+    "url": "https://github.com/mobilusoss/react-web-notification/issues"
   },
-  "homepage": "https://github.com/georgeosddev/react-web-notification",
+  "homepage": "https://github.com/mobilusoss/react-web-notification",
   "devDependencies": {
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.5",
