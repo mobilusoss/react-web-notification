@@ -1,11 +1,11 @@
-# React-web-notification [![Build Status](https://travis-ci.org/georgeOsdDev/react-web-notification.svg?branch=develop)](https://travis-ci.org/georgeOsdDev/react-web-notification) [![npm version](https://badge.fury.io/js/react-web-notification.svg)](http://badge.fury.io/js/react-web-notification)
+# React-web-notification [![Build Status](https://travis-ci.org/mobilusoss/react-web-notification.svg?branch=develop)](https://travis-ci.org/mobilusoss/react-web-notification) [![npm version](https://badge.fury.io/js/react-web-notification.svg)](http://badge.fury.io/js/react-web-notification)
 
 React component with [HTML5 Web Notification API](https://developer.mozilla.org/en/docs/Web/API/notification).
 This component show nothing in dom element, but trigger HTML5 Web Notification API with `render` method in the life cycle of React.js.
 
 ## Demo
 
-[View Demo](https://georgeosddev.github.io/react-web-notification/example/)
+[View Demo](https://mobilusoss.github.io/react-web-notification/example/)
 
 ## Installation
 
@@ -75,23 +75,25 @@ Notification.propTypes = {
 
 ## Usage example
 
-See  [example](https://github.com/georgeOsdDev/react-web-notification/tree/develop/example)
+See  [example](https://github.com/mobilusoss/react-web-notification/tree/develop/example)
 
 ```bash
-npm install
-npm run start:example
+yarn
+yarn run start:example
 ```
 
 ## Tests
 
 ```bash
-npm test
+yarn test
 ```
 
+## Update dependencies
+
+Use [npm-check-updates](https://www.npmjs.com/package/npm-check-updates)
 
 ### Known Issues
 
- * [Notification.sound](https://github.com/georgeOsdDev/react-web-notification/issues/13)
+ * [Notification.sound](https://github.com/mobilusoss/react-web-notification/issues/13)
   `Notification.sound` is [not supported in any browser](https://developer.mozilla.org/en/docs/Web/API/notification/sound#Browser_compatibility).
-  You can emulate it with `onShow` callback. see [example](https://github.com/georgeOsdDev/react-web-notification/tree/develop/example).
-
+  You can emulate it with `onShow` callback. see [example](https://github.com/mobilusoss/react-web-notification/tree/develop/example).
