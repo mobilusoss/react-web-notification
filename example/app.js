@@ -67,7 +67,7 @@ class App extends React.Component {
     const title = 'React-Web-Notification' + now;
     const body = 'Hello' + new Date();
     const tag = now;
-    const icon = 'http://georgeosddev.github.io/react-web-notification/example/Notifications_button_24.png';
+    const icon = 'http://mobilusoss.github.io/react-web-notification/example/Notifications_button_24.png';
     // const icon = 'http://localhost:3000/Notifications_button_24.png';
 
     // Available options
