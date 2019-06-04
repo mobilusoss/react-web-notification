@@ -1,8 +1,11 @@
 ## Change Log
 
+### Ver 0.6.0
+* Update dependencies, add core-js@3
+
 ### Ver 0.5.0
 
-* Update `Babel` from 6.x to 7.x 
+* Update `Babel` from 6.x to 7.x
 * Update other dependencies
 
 ### Ver 0.4.0

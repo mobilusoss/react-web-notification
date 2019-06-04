@@ -78,20 +78,22 @@ Notification.propTypes = {
 See  [example](https://github.com/georgeOsdDev/react-web-notification/tree/develop/example)
 
 ```bash
-npm install
-npm run start:example
+yarn
+yarn run start:example
 ```
 
 ## Tests
 
 ```bash
-npm test
+yarn test
 ```
 
+## Update dependencies
+
+Use [npm-check-updates](https://www.npmjs.com/package/npm-check-updates)
 
 ### Known Issues
 
  * [Notification.sound](https://github.com/georgeOsdDev/react-web-notification/issues/13)
   `Notification.sound` is [not supported in any browser](https://developer.mozilla.org/en/docs/Web/API/notification/sound#Browser_compatibility).
   You can emulate it with `onShow` callback. see [example](https://github.com/georgeOsdDev/react-web-notification/tree/develop/example).
-
