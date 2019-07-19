@@ -1,4 +1,5 @@
 # React-web-notification [![Build Status](https://travis-ci.org/mobilusoss/react-web-notification.svg?branch=develop)](https://travis-ci.org/mobilusoss/react-web-notification) [![npm version](https://badge.fury.io/js/react-web-notification.svg)](http://badge.fury.io/js/react-web-notification) [![codebeat badge](https://codebeat.co/badges/e03e06fa-8d28-44a9-afb9-848cfcf98d91)](https://codebeat.co/projects/github-com-mobilusoss-react-web-notification-master)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmobilusoss%2Freact-web-notification.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmobilusoss%2Freact-web-notification?ref=badge_shield)
 
 React component with [HTML5 Web Notification API](https://developer.mozilla.org/en/docs/Web/API/notification).
 This component show nothing in dom element, but trigger HTML5 Web Notification API with `render` method in the life cycle of React.js.
@@ -97,3 +98,7 @@ Use [npm-check-updates](https://www.npmjs.com/package/npm-check-updates)
  * [Notification.sound](https://github.com/mobilusoss/react-web-notification/issues/13)
   `Notification.sound` is [not supported in any browser](https://developer.mozilla.org/en/docs/Web/API/notification/sound#Browser_compatibility).
   You can emulate it with `onShow` callback. see [example](https://github.com/mobilusoss/react-web-notification/tree/develop/example).
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmobilusoss%2Freact-web-notification.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmobilusoss%2Freact-web-notification?ref=badge_large)
