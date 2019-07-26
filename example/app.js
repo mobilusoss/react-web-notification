@@ -121,7 +121,7 @@ class App extends React.Component {
   }
 };
 if (document.title === 'swExample') {
-  navigator.serviceWorker.register('/sw.js')
+  navigator.serviceWorker.register('sw.js')
   .then(function(registration) {
     ReactDom.render(<App swRegistration={registration}/>, document.getElementById('out'));
   });
