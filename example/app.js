@@ -86,11 +86,17 @@ class App extends React.Component {
     });
   }
 
-  render() {
+  handleButtonClick2() {
+    this.props.swRegistration.getNotifications({}).then(function(notifications) {
+      console.log(notifications);
+    });
+  }
 
+  render() {
     return (
       <div>
         <button onClick={this.handleButtonClick.bind(this)}>Notif!</button>
+        {document.title === 'swExample' && <button onClick={this.handleButtonClick2.bind(this)}>swRegistration.getNotifications</button>}
         <Notification
           ignore={this.state.ignore && this.state.title !== ''}
           notSupported={this.handleNotSupported.bind(this)}
@@ -103,15 +109,23 @@ class App extends React.Component {
           timeout={5000}
           title={this.state.title}
           options={this.state.options}
+          swRegistration={this.props.swRegistration}
         />
         <audio id='sound' preload='auto'>
           <source src='./sound.mp3' type='audio/mpeg' />
           <source src='./sound.ogg' type='audio/ogg' />
-          <embed hidden='true' autostart='false' loop='false' src='./sound.mp3' />
+          <embed hidden={true} autostart='false' loop={false} src='./sound.mp3' />
         </audio>
       </div>
     )
   }
 };
+if (document.title === 'swExample') {
+  navigator.serviceWorker.register('/sw.js')
+  .then(function(registration) {
+    ReactDom.render(<App swRegistration={registration}/>, document.getElementById('out'));
+  });
+} else {
+  ReactDom.render(<App/>, document.getElementById('out'));
+}
 
-ReactDom.render(<App/>, document.getElementById('out'));
