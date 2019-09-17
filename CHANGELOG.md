@@ -1,5 +1,8 @@
 ## Change Log
 
+### Ver 0.7.0
+* Enable to wait user interaction to close #60
+
 ### Ver 0.6.1
 * Update dependencies with `ncu -u`
 * Add codebeat

@@ -61,7 +61,7 @@ Notification.propTypes = {
 
 * `onError(e, tag)` : Called when Desktop notification happen error.
 
-* `timeout` : milli sec to close notification automatically.(Default 5000)
+* `timeout` : milli sec to close notification automatically. Ignored if `0` or less. (Default `5000`)
 
 * `title` : Notification title.
 
