@@ -288,7 +288,52 @@ describe('Test of Notification', () => {
                 expect(args[1]).to.be.eql('mytag');
               });
             });
-
+            describe('test of autoClose timer', () => {
+              const MY_TITLE = 'mytitle';
+              const MY_OPTIONS = {
+                tag: 'mytag',
+                body: 'mybody',
+                icon: 'myicon',
+                lang: 'en',
+                dir: 'ltr'
+              };
+              describe('when `props.timeout` is less than eql 0', () => {
+                let n;
+                before(() => {
+                  component = ReactTestUtils.renderIntoDocument(<Notification title={MY_TITLE} options={MY_OPTIONS} ignore={false} timeout={0}/>);
+                  n = component._getNotificationInstance('mytag');
+                  sinon.stub(n, 'close');
+                  n.onshow('showEvent');
+                });
+                after(() => {
+                  n.close.restore();
+                })
+                it('will not trigger close automatically', (done) => {
+                  setTimeout(() => {
+                    expect(n.close.called).to.be.eql(false);
+                    done();
+                  }, 200);
+                })
+              })
+              describe('when `props.timeout` is greater than 0', () => {
+                let n;
+                before(() => {
+                  component = ReactTestUtils.renderIntoDocument(<Notification title={MY_TITLE} options={MY_OPTIONS} ignore={false} timeout={50}/>);
+                  n = component._getNotificationInstance('mytag');
+                  sinon.stub(n, 'close');
+                  n.onshow('showEvent');
+                });
+                after(() => {
+                  n.close.restore();
+                });
+                it('will trigger close automatically', (done) => {
+                  setTimeout(() => {
+                    expect(n.close.called).to.be.eql(true);
+                    done();
+                  }, 200);
+                })
+              })
+            })
             describe('when swRegistration prop is defined', () => {
               const swRegistrationMock = { showNotification: sinon.stub().resolves({ notification: ee }) }
               const MY_TITLE = 'mytitle';

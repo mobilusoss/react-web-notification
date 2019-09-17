@@ -108,9 +108,11 @@ class Notification extends React.Component {
           const n = new window.Notification(this.props.title, opt);
           n.onshow = e => {
             this.props.onShow(e, opt.tag);
-            setTimeout(() => {
-              this.close(n);
-            }, this.props.timeout);
+            if (this.props.timeout > 0) {
+              setTimeout(() => {
+                this.close(n);
+              }, this.props.timeout);
+            }
           };
           n.onclick = e => { this.props.onClick(e, opt.tag); };
           n.onclose = e => { this.props.onClose(e, opt.tag); };
