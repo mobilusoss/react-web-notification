@@ -1,3 +1,3 @@
-lib/*
-example/*
+lib/**
+example/**
 karma.conf.js
