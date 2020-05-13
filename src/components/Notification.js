@@ -12,6 +12,16 @@ const seqGen = () => {
 };
 const seq = seqGen();
 
+// https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API/Using_the_Notifications_API
+// https://github.com/mobilusoss/react-web-notification/issues/66
+function checkNotificationPromise() {
+  try {
+    window.Notification.requestPermission().then();
+  } catch(e) {
+    return false;
+  }
+  return true;
+}
 class Notification extends React.Component {
   constructor(props) {
     super(props);
@@ -45,7 +55,7 @@ class Notification extends React.Component {
   }
 
   _askPermission(){
-    window.Notification.requestPermission((permission) => {
+    const handlePermission = (permission) => {
       let result = permission === PERMISSION_GRANTED;
       this.setState({
         granted: result
@@ -56,7 +66,17 @@ class Notification extends React.Component {
           this.props.onPermissionDenied();
         }
       });
-    });
+    }
+    if (checkNotificationPromise()) {
+      window.Notification.requestPermission()
+      .then((permission) => {
+        handlePermission(permission);
+      })
+    } else {
+      window.Notification.requestPermission((permission) => {
+        handlePermission(permission);
+      });
+    }
   }
 
   componentDidMount(){

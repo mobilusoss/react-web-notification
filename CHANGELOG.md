@@ -1,5 +1,8 @@
 ## Change Log
 
+### Ver 0.8.0
+* Modern browsers support #66
+
 ### Ver 0.7.0
 * Enable to wait user interaction to close #60
 
