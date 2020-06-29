@@ -95,7 +95,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.handleButtonClick.bind(this)}>Notif!</button>
+        <button onClick={this.handleButtonClick.bind(this)}>Notify!</button>
         {document.title === 'swExample' && <button onClick={this.handleButtonClick2.bind(this)}>swRegistration.getNotifications</button>}
         <Notification
           ignore={this.state.ignore && this.state.title !== ''}
