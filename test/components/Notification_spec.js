@@ -7,7 +7,7 @@ import sinon from 'sinon';
 let expect = chai.expect;
 import events from 'events'
 let EventEmitter = events.EventEmitter;
-import Notification from '../../src/components/Notification';
+import Notification, {checkNotificationPromise} from '../../src/components/Notification';
 
 const PERMISSION_GRANTED = 'granted';
 const PERMISSION_DENIED = 'denied';
@@ -17,9 +17,32 @@ describe('Test of Notification', () => {
 
   let component;
 
-  beforeEach(() => {
+  describe('checkNotificationPromise', () => {
+    describe('promise-based version of Notification.requestPermission() is supported', () => {
+      let stub;
+      before(() => {
+        stub = sinon.stub(window.Notification, 'requestPermission').returns(Promise.resolve());
+      })
+      after(() => {
+        stub.restore();
+      })
+      it('will return true', () => {
+        expect(checkNotificationPromise()).to.be.eql(true);
+      })
+    });
+    describe('when it does not support promise-based version', () => {
+      let stub;
+      before(() => {
+        stub = sinon.stub(window.Notification, 'requestPermission').callsFake((cb) => {cb()});
+      })
+      after(() => {
+        stub.restore();
+      })
+      it('will return false', () => {
+        expect(checkNotificationPromise()).to.be.eql(false);
+      });
+    });
   });
-
   describe('Notification component', () => {
     it('should have default properties', function () {
       component = ReactTestUtils.renderIntoDocument(<Notification title='test'/>);
@@ -78,7 +101,7 @@ describe('Test of Notification', () => {
               spy1 = sinon.spy();
               spy2 = sinon.spy();
               stub = sinon.stub(window.Notification, 'requestPermission').callsFake(function(cb){
-                return cb(PERMISSION_DENIED);
+                if (typeof cb === 'function') cb(PERMISSION_DENIED);
               });
               component = ReactTestUtils.renderIntoDocument(<Notification title='test' notSupported={spy1} onPermissionDenied={spy2}/>);
             });
@@ -87,8 +110,11 @@ describe('Test of Notification', () => {
               stub.restore();
             });
 
-            it('should call window.Notification.requestPermission', () => {
-              expect(stub.calledOnce).to.be.eql(true);
+            it('should call window.Notification.requestPermission twice', () => {
+              expect(stub.calledTwice).to.be.eql(true);
+              expect(stub.getCall(0).args).to.be.eql([]);
+              expect(stub.getCall(1).args.length).to.be.eql(1);
+              expect(stub.getCall(1).args[0]).to.be.a('function');
             });
 
             it('should call onPermissionDenied prop', () => {
@@ -120,7 +146,7 @@ describe('Test of Notification', () => {
             });
 
             it('should not call window.Notification.requestPermission', () => {
-              expect(stub2.calledOnce).to.be.eql(false);
+              expect(stub2.called).to.be.eql(false);
             });
 
             it('should call onPermissionDenied prop', () => {
@@ -153,7 +179,12 @@ describe('Test of Notification', () => {
             });
 
             it('should call window.Notification.requestPermission', () => {
-              expect(stub2.calledOnce).to.be.eql(true);
+              it('should call window.Notification.requestPermission twice', () => {
+                expect(stub.calledTwice).to.be.eql(true);
+                expect(stub.getCall(0).args).to.be.eql([]);
+                expect(stub.getCall(1).args.length).to.be.eql(1);
+                expect(stub.getCall(1).args[0]).to.be.a('function');
+              });
             });
 
             it('should call onPermissionGranted prop', () => {

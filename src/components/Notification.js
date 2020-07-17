@@ -14,7 +14,7 @@ const seq = seqGen();
 
 // https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API/Using_the_Notifications_API
 // https://github.com/mobilusoss/react-web-notification/issues/66
-function checkNotificationPromise() {
+export const checkNotificationPromise = function() {
   try {
     window.Notification.requestPermission().then();
   } catch(e) {
