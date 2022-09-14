@@ -80,7 +80,7 @@ class Notification extends React.Component {
   }
 
   componentDidMount(){
-    if (this.props.disableActiveWindow) {
+    if (this.props.disableActiveWindow && typeof document.hasFocus !== 'function') {
       window.addEventListener('focus', this.onWindowFocus);
       window.addEventListener('blur', this.onWindowBlur);
     }
@@ -140,7 +140,8 @@ class Notification extends React.Component {
   }
 
   render() {
-    let doNotShowOnActiveWindow = this.props.disableActiveWindow && this.windowFocus;
+    let hasFocus = typeof document.hasFocus === 'function' ? document.hasFocus() : this.windowFocus;
+    let doNotShowOnActiveWindow = this.props.disableActiveWindow && hasFocus;
     if (!this.props.ignore && this.props.title && this.state.supported && this.state.granted && !doNotShowOnActiveWindow) {
       this.doNotification();
     }
